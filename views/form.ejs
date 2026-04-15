@@ -25,44 +25,44 @@
     <div class="message-box" id="messageBox"></div>
 
     <script>
-        const messageBox = document.getElementById('messageBox');
+    const messageBox = document.getElementById('messageBox');
 
-        document.getElementById('loginForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
 
-            const formData = new FormData(this);
-            console.log('Form Data Entries:');
-            for (const entry of formData.entries()) {
-                console.log(entry);
+        const formData = new FormData(this);
+        const username = formData.get('username');
+        const password = formData.get('password');
+        axios.post('/form_handler', {
+            username: username,
+            password: password
+        })
+        .then(function (response) {
+            const result = response.data;
+            showMessage(result);
+
+            if (result.success) {
+                // Wait for 3 seconds before redirecting
+                setTimeout(function() {
+                    window.location.href = '/thelibrary';
+                }, 3000);
             }
-            const username = formData.get('username');
-            const password = formData.get('password');
-            axios.post('/form_handler', {
-                username: username,
-                password: password
-            })
-            .then(function (response) {
-                // Handle the response
-                const result = response.data; // Access the response data
-                showMessage(result);
-            })
-            .catch(function (error) {
-                // Handle errors
-                console.error('Error:', error);
-            });
+        })
+        .catch(function (error) {
+            console.error('Error:', error);
         });
+    });
 
-        function showMessage(message) {
-            console.log('Received Message:', message); // Print the received message to the console
-            messageBox.textContent = message;
-            messageBox.style.display = 'block';
+    function showMessage(result) {
+        messageBox.textContent = result.message;
+        messageBox.style.display = 'block';
 
-            if (message === 'Login successful') {
-                messageBox.className = 'message-box success';
-            } else {
-                messageBox.className = 'message-box failure';
-            }
+        if (result.success) {
+            messageBox.className = 'message-box success';
+        } else {
+            messageBox.className = 'message-box failure';
         }
-    </script>
+    }
+</script>
 </body>
 </html>

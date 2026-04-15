@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <title>Library Challenge</title>
     <link rel="stylesheet" href="/style2.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div class="library-background">
@@ -15,6 +16,46 @@
         Shelf: 4
         Volume: 22
         Page: 386
+        <br>
+        <form id="flagForm">
+            <input type="text" name="flag" placeholder="Enter Flag">
+            <button type="submit">Submit Flag</button>
+        </form>
     </div>
+    <div class="message-box" id="messageBox"></div>
+<script>
+    document.getElementById('flagForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const flag = formData.get('flag');
+
+        axios.post('/submit-flag', {
+            flag: flag
+        })
+        .then(function (response) {
+            showMessage(response.data);
+        })
+        .catch(function (error) {
+            console.error('Error:', error);
+        });
+    });
+
+    function showMessage(result) {
+        messageBox.textContent = result.message;
+        messageBox.style.display = 'block';
+
+        if (result.correct) {
+            messageBox.className = 'message-box success';
+            // Wait for 3 seconds before redirecting
+            setTimeout(function() {
+                window.location.href = '/infinitelinks';
+            }, 3000);
+        }
+        else {
+            messageBox.className = 'message-box failure';
+        }
+    }
+</script>
 </body>
 </html>

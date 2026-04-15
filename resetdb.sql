@@ -14,4 +14,5 @@ VALUES
 ('vrishak', 'minecraft'),
 ('kiran', 'crypto'),
 ('sebastian', 'aigrader'),
-('dheetya', '!@#$%^&*()');
+('dheetya', '!@#$%^&*()'),
+('katie', 'avocado');
