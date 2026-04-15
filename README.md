@@ -7,8 +7,8 @@ It is a 3-stage challenge consisting of:
 1: Vulnerable SQLite login
 
 2. Library of Babel OSINT
-  
-4. Hundreds of generated anchor links where only one contains the flag (created by `generate.py`)
+
+3. Hundreds of generated anchor links where only one contains the flag (created by `generate.py`)
 
 The site is currently hosted on <https://sql-injection-game.onrender.com/>.
 
