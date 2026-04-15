@@ -1,0 +1,17 @@
+{
+  "name": "sql-injection-game",
+  "version": "1.0.0",
+  "description": "cool challenge yay!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6"
+  }
+}
