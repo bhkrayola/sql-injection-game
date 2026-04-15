@@ -31,3 +31,5 @@ Docker
 docker build -t sql-injection-game:local .
 docker run --rm -p 8080:8080 sql-injection-game:local
 ```
+
+Enjoy and happy hacking!
